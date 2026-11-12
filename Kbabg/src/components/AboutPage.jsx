@@ -225,7 +225,7 @@ export default function AboutPage({ setActivePage }) {
                   <span className="font-poppins text-[11px] font-bold uppercase tracking-wider text-white">
                     Fresh Salads & Chutneys
                   </span>
-                </div>
+                </div>   
               </div>
 
             </div>
