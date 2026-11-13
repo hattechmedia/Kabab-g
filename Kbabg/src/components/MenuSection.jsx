@@ -1,6 +1,7 @@
 import React from 'react';
+import { MapPin } from 'lucide-react';
 
-export default function MenuSection() {
+export default function MenuSection({ selectedBranch = 'nagana', onOpenBranchModal }) {
   const galleryItems = [
     {
       id: 1,
@@ -65,6 +66,24 @@ export default function MenuSection() {
           <p className="text-body-custom text-neutral-300 mt-3">
             Explore our visual gallery of authentic Pakistani cuisine, prepared with fire, patience, and heirloom recipes.
           </p>
+
+          {/* Current Branch Tag */}
+          <div className="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-[#F5B800]/30 text-xs font-poppins text-neutral-300">
+            <MapPin className="w-3.5 h-3.5 text-[#F5B800]" />
+            <span>Branch:</span>
+            <span className="font-bold text-[#F5B800]">
+              {selectedBranch === 'nagana' ? '2nd Branch: Main Nagana Chowk, Multan' : '1st Branch: Gulshan Market, New Multan'}
+            </span>
+            {onOpenBranchModal && (
+              <button
+                type="button"
+                onClick={onOpenBranchModal}
+                className="ml-1 text-[11px] font-semibold text-white hover:text-[#F5B800] underline cursor-pointer"
+              >
+                Change
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Gallery Grid (3x2 layout matching attached image) */}

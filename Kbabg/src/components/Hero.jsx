@@ -103,18 +103,19 @@ export default function Hero({ setActivePage }) {
         {/* Centered Action Buttons */}
         <div className="pt-8 sm:pt-10 flex flex-wrap items-center justify-center gap-4">
           {/* Primary Button */}
-          <a
-            href="#menu"
-            onClick={(e) => {
-              e.preventDefault();
-              const menuEl = document.getElementById('menu');
-              if (menuEl) menuEl.scrollIntoView({ behavior: 'smooth' });
+          <button
+            type="button"
+            onClick={() => {
+              if (setActivePage) {
+                setActivePage('Menu');
+                window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+              }
             }}
             className="btn-custom text-[15px] font-semibold bg-[#F5B800] hover:bg-[#e0a700] text-[#111111] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-2xl hover:shadow-[#F5B800]/40 transform hover:-translate-y-0.5 active:translate-y-0 transition duration-200 group cursor-pointer uppercase tracking-wider flex items-center justify-center"
           >
             {slides[currentSlide].btnText}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
+          </button>
 
           {/* Secondary Button */}
           <button

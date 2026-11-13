@@ -20,7 +20,7 @@ export default function Footer({ setActivePage }) {
   const navLinks = [
     { name: 'Home', href: '#home', page: 'Home' },
     { name: 'About Us', href: '#about', page: 'About us' },
-    { name: 'Menu', href: '#menu', sectionId: 'menu' },
+    { name: 'Menu', href: '#menu', page: 'Menu' },
     { name: 'Contact', href: '#contact', page: 'Contact' },
   ];
 
