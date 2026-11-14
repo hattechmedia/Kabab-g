@@ -122,42 +122,26 @@ export default function AboutPage({ setActivePage }) {
   return (
     <div className="bg-[#111111] text-[#FFFFFF]">
       
-      {/* 1. Hero Section: Uses kbabg.webp as background image */}
-      <section className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] flex items-center justify-center overflow-hidden border-b border-neutral-800">
+      {/* 1. Hero Section: Uses about.png as background image */}
+      <section className="relative min-h-[340px] sm:min-h-[400px] lg:min-h-[460px] flex items-start overflow-hidden border-b border-neutral-800">
         
-        {/* Background Image: about.png - Bright and Vibrant (No Dullness) */}
+        {/* Background Image: about.png - Bright and Vibrant */}
         <div className="absolute inset-0 z-0">
           <img
             src="/about.png"
             alt="Kabab G Heritage Kitchen"
             className="w-full h-full object-cover object-center"
           />
-          {/* Balanced Dark Overlay so text is clearly legible while about.png remains visible */}
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/35 to-black/55" />
+          {/* Subtle Balanced Dark Overlay so photo is visible and clear */}
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/20 to-black/45" />
         </div>
 
-        {/* Hero Content & Breadcrumb */}
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-28 pb-16 sm:pt-36 sm:pb-20">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-8 h-[2px] bg-[#F5B800]"></span>
-            <span className="font-poppins text-small-custom font-semibold tracking-[0.25em] uppercase text-[#F5B800] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-              25 YEARS OF EXCELLENCE
-            </span>
-            <span className="w-8 h-[2px] bg-[#F5B800]"></span>
-          </div>
-
-          <h1 className="text-hero-heading text-[#FFFFFF] tracking-tight drop-shadow-[0_3px_14px_rgba(0,0,0,0.95)]">
-            About Us
-          </h1>
-
-          <p className="font-poppins text-[16px] sm:text-[18px] text-white max-w-2xl mx-auto mt-3 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-            Preserving Pakistan’s rich charcoal barbecue heritage with heirloom recipes, prime meats, and heartfelt hospitality.
-          </p>
-
-          {/* Breadcrumb Navigation */}
-          <div className="flex items-center justify-center gap-2 mt-5 text-[14px] font-poppins text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+        {/* Top-Left Breadcrumb Only */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-40 pb-8 text-left">
+          <div className="inline-flex items-center gap-2 text-[14px] sm:text-[15px] font-poppins text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
             <button
+              type="button"
               onClick={() => {
                 if (setActivePage) setActivePage('Home');
                 window.scrollTo({ top: 0, left: 0, behavior: 'instant' });

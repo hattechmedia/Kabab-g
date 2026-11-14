@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Menu as MenuIcon, X, MapPin } from 'lucide-react';
+import { Menu as MenuIcon, X, MapPin, Store, Phone, Utensils, Bike, Home } from 'lucide-react';
 
-export default function Navbar({ activePage = 'Home', setActivePage }) {
+export default function Navbar({ 
+  activePage = 'Home', 
+  setActivePage, 
+  selectedBranch = 'nagana', 
+  onOpenBranchModal 
+}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -21,19 +26,61 @@ export default function Navbar({ activePage = 'Home', setActivePage }) {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const branchDisplayName = selectedBranch === 'gulshan' 
+    ? 'Gulshan Market' 
+    : 'Nagana Chowk';
+
+  const branchFullName = selectedBranch === 'gulshan' 
+    ? '1st Branch: Gulshan Market, New Multan' 
+    : '2nd Branch: Main Nagana Chowk, Multan';
+
   return (
     <header 
-      className={`sticky top-0 z-50 w-full transition-all duration-300 -mb-20 sm:-mb-22 md:-mb-24 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 -mb-28 sm:-mb-30 md:-mb-32 ${
         isScrolled || isMobileMenuOpen
-          ? 'bg-[#0d0d0d]/90 backdrop-blur-md shadow-2xl'
-          : 'bg-transparent'
+          ? 'bg-[#0d0d0d]/95 backdrop-blur-md shadow-2xl'
+          : 'bg-[#0d0d0d]/80 sm:bg-transparent'
       }`}
     >
+      {/* 0. Top Utility Bar (Exact match to reference image) */}
+      <div className="w-full border-b border-white/10 bg-[#0d0d0d]/90 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-8 sm:h-9 text-[11px] sm:text-[12px] font-poppins text-neutral-300">
+            
+            {/* Left: Phone */}
+            <a 
+              href="tel:03159610004" 
+              className="inline-flex items-center gap-1.5 sm:gap-2 text-neutral-300 hover:text-[#F5B800] transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#F5B800] stroke-[2]" />
+              <span className="font-semibold text-white tracking-wide">0315-9610004</span>
+            </a>
+
+            {/* Right: Dine In | Take Away | Home Delivery */}
+            <div className="flex items-center gap-3 sm:gap-5 text-neutral-300">
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 hover:text-white transition-colors">
+                <Utensils className="w-3.5 h-3.5 text-[#F5B800]" />
+                <span>Dine In</span>
+              </span>
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 hover:text-white transition-colors">
+                <Bike className="w-3.5 h-3.5 text-[#F5B800]" />
+                <span>Take Away</span>
+              </span>
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 hover:text-white transition-colors">
+                <Home className="w-3.5 h-3.5 text-[#F5B800]" />
+                <span>Home Delivery</span>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-22 md:h-24">
           
           {/* 1. Left: Navigation Items */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-10 flex-1 justify-start">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 flex-1 justify-start">
             {navLinks.map((item) => {
               const isActive = activePage === item.name;
 
@@ -51,14 +98,14 @@ export default function Navbar({ activePage = 'Home', setActivePage }) {
                           e.preventDefault();
                           setActivePage('About us');
                           window.scrollTo({ top: 0, behavior: 'instant' });
+                        } else if (item.name === 'Menu') {
+                          e.preventDefault();
+                          setActivePage('Menu');
+                          window.scrollTo({ top: 0, behavior: 'instant' });
                         } else {
+                          e.preventDefault();
                           setActivePage('Home');
-                          if (item.name === 'Menu') {
-                            setTimeout(() => {
-                              const menuEl = document.getElementById('menu');
-                              if (menuEl) menuEl.scrollIntoView({ behavior: 'smooth' });
-                            }, 50);
-                          }
+                          window.scrollTo({ top: 0, behavior: 'instant' });
                         }
                       }
                     }}
@@ -84,6 +131,7 @@ export default function Navbar({ activePage = 'Home', setActivePage }) {
             <a
               href="#home"
               onClick={(e) => {
+                e.preventDefault();
                 if (setActivePage) {
                   setActivePage('Home');
                   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -95,13 +143,13 @@ export default function Navbar({ activePage = 'Home', setActivePage }) {
                 <img 
                   src="/logo-rm.png" 
                   alt="Kabab G Logo" 
-                  className="h-16 sm:h-18 md:h-20 lg:h-22 w-auto object-contain max-w-[220px] sm:max-w-[260px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]"
+                  className="h-16 sm:h-18 md:h-20 lg:h-22 w-auto object-contain max-w-[200px] sm:max-w-[240px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]"
                 />
               </div>
             </a>
           </div>
 
-          {/* 3. Right: Facebook, WhatsApp & Google Maps (GMP) Icons */}
+          {/* 3. Right: Social Icons */}
           <div className="hidden md:flex items-center justify-end flex-1 gap-2.5 lg:gap-3">
             {/* Facebook */}
             <a
@@ -144,12 +192,12 @@ export default function Navbar({ activePage = 'Home', setActivePage }) {
             </a>
           </div>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex items-center md:hidden">
+          {/* Mobile Right Controls: Hamburger */}
+          <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl text-white hover:bg-neutral-800/60 focus:outline-none"
+              className="p-2.5 rounded-xl text-white hover:bg-neutral-800/60 focus:outline-none cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? (
@@ -159,12 +207,43 @@ export default function Navbar({ activePage = 'Home', setActivePage }) {
               )}
             </button>
           </div>
+
         </div>
       </div>
 
       {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-[#161616]/98 backdrop-blur-xl border-t border-neutral-800 px-6 pt-4 pb-6 space-y-3 shadow-2xl animate-fade-in">
+          
+          {/* Mobile Branch Selector Banner */}
+          <div className="bg-neutral-900/90 border border-[#F5B800]/40 rounded-xl p-3.5 flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-[#F5B800]/15 text-[#F5B800] flex items-center justify-center shrink-0">
+                <Store className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <div className="font-poppins text-[10px] text-neutral-400 uppercase tracking-wider">
+                  Active Branch
+                </div>
+                <div className="font-poppins text-[12px] font-bold text-[#F5B800] truncate">
+                  {branchFullName}
+                </div>
+              </div>
+            </div>
+            {onOpenBranchModal && (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenBranchModal();
+                }}
+                className="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-[#F5B800] text-black hover:bg-[#dfa600] transition-colors shrink-0 cursor-pointer"
+              >
+                Change
+              </button>
+            )}
+          </div>
+
           {navLinks.map((item) => {
             const isActive = activePage === item.name;
 
@@ -178,6 +257,8 @@ export default function Navbar({ activePage = 'Home', setActivePage }) {
                       setActivePage('Contact');
                     } else if (item.name === 'About us') {
                       setActivePage('About us');
+                    } else if (item.name === 'Menu') {
+                      setActivePage('Menu');
                     } else {
                       setActivePage('Home');
                     }

@@ -1,152 +1,247 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { Utensils, Phone, Crown, Flame, ChevronDown, Sparkles } from 'lucide-react';
 
 export default function Hero({ setActivePage }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
+  // Food image slider state
+  const heroImages = [
     {
-      id: 1,
-      image: '/hero.png',
-      tagline: 'WELCOME TO KABAB G',
-      headingLine1: 'WHERE EVERY BITE',
-      headingLine2: 'FEELS',
-      headingHighlight: 'SPECIAL',
-      subtitle: 'Seekh Kebabs · Desi Karahi · Balochi Sajji · Clay Tandoor · Royal Platters',
-      btnText: 'Explore Our Menu',
-      btnLink: '#menu',
+      src: '/hero.png',
+      alt: 'Kabab G Authentic Charcoal BBQ Seekh Kebabs',
+      badgeTitle: 'Fresh off the Grill',
+      badgeSubtitle: 'Traditional charcoal BBQ',
     },
     {
-      id: 2,
-      image: '/hero-2.jpg',
-      tagline: 'WOOD CHARCOAL PERFECTION',
-      headingLine1: 'SIZZLING LIVE',
-      headingLine2: 'FROM THE',
-      headingHighlight: 'TANDOOR',
-      subtitle: 'Tender Marinated Meats · Secret Heirloom Masalas · Live Acacia Embers',
-      btnText: 'Discover Sizzlers',
-      btnLink: '#menu',
+      src: '/hero-2.jpg',
+      alt: 'Kabab G Sizzling Tandoor & Grill',
+      badgeTitle: 'Sizzling Live',
+      badgeSubtitle: 'Acacia wood charcoal embers',
     },
   ];
 
-  // Auto move slider every 5 seconds
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Auto transition every 6 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [heroImages.length]);
+
+  const stats = [
+    { value: '98+', label: 'DISHES ON MENU' },
+    { value: '19+', label: 'MENU CATEGORIES' },
+    { value: '2+', label: 'BRANCHES IN MULTAN' },
+  ];
+
+  const marqueeItems = [
+    'Real Flavours',
+    'Authentic Pakistani BBQ',
+    'Good Food Brings People Together',
+    'Traditional Taste',
+    'Fresh Ingredients',
+    'Real Flavours',
+    'Authentic Pakistani BBQ',
+    'Good Food Brings People Together',
+  ];
+
+  const handleScrollToContent = () => {
+    const nextSection = document.getElementById('categories') || document.querySelector('main > section:nth-of-type(2)');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollBy({ top: 600, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section 
-      id="home" 
-      className="relative bg-[#0d0d0d] text-[#FFFFFF] overflow-hidden min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] flex items-center justify-center"
-    >
-      {/* 1. Full-Width Background Slides with Reduced Opacity (Food clearly visible like sample) */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {slides.map((slide, idx) => {
-          const isActive = currentSlide === idx;
+    <div id="home" className="relative bg-[#0d0d0d] text-white overflow-hidden">
+      
+      {/* ================= BACKGROUND DECORATIONS ================= */}
+      {/* 1. Subtle Circular Vector Rings (Top-Left) */}
+      <div className="absolute -top-32 -left-32 w-[420px] sm:w-[540px] h-[420px] sm:h-[540px] rounded-full border border-white/[0.04] pointer-events-none" />
+      <div className="absolute -top-16 -left-16 w-[300px] sm:w-[380px] h-[300px] sm:h-[380px] rounded-full border border-white/[0.03] pointer-events-none" />
+      
+      {/* 2. Subtle Circular Vector Rings (Bottom-Right) */}
+      <div className="absolute -bottom-40 -right-28 w-[500px] sm:w-[620px] h-[500px] sm:h-[620px] rounded-full border border-white/[0.03] pointer-events-none" />
+      <div className="absolute -bottom-20 -right-12 w-[340px] sm:w-[420px] h-[340px] sm:h-[420px] rounded-full border border-white/[0.02] pointer-events-none" />
 
-          return (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0 pointer-events-none'
-              }`}
-            >
-              <img
-                src={slide.image}
-                alt={`Kabab G Background ${idx + 1}`}
-                className="w-full h-full object-cover object-center transform transition-transform duration-[7000ms] ease-out scale-100 hover:scale-105"
-              />
+      {/* 3. Ambient Golden Glow behind Right Image Card */}
+      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[500px] h-[400px] bg-[#F5B800]/[0.08] rounded-full blur-[140px] pointer-events-none" />
 
-              {/* Reduced opacity overlays so the delicious food is clearly visible */}
-              <div className="absolute inset-0 bg-black/40" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-[#0d0d0d]/50" />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#0d0d0d]" />
+      {/* ================= HERO MAIN CONTENT ================= */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 lg:pt-44 pb-16 sm:pb-20 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-14 items-center">
+          
+          {/* ---------------- LEFT COLUMN: HEADINGS, CTA, STATS ---------------- */}
+          <div className="lg:col-span-6 xl:col-span-6 text-left">
+            
+            {/* Tagline with dash */}
+            <div className="inline-flex items-center gap-2.5 mb-3 sm:mb-4">
+              <span className="w-8 h-[2px] bg-[#F5B800]" />
+              <span className="font-poppins text-xs sm:text-[13px] font-bold tracking-[0.25em] uppercase text-[#F5B800]">
+                AUTHENTIC PAKISTANI BBQ
+              </span>
             </div>
-          );
-        })}
 
-        {/* Ambient Warm Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#F5B800]/10 rounded-full blur-[140px] pointer-events-none z-10" />
-      </div>
+            {/* Main Heading: "The Art of Authentic Flavour." */}
+            <h1 className="font-playfair text-[38px] sm:text-[50px] md:text-[58px] lg:text-[62px] xl:text-[66px] font-bold text-white tracking-tight leading-[1.08] mb-5">
+              The Art of <br />
+              <span className="italic text-[#F5B800] font-normal">Authentic Flavour.</span>
+            </h1>
 
-      {/* 2. Foreground Content: Centered Layout (Matching Reference Sample Image) */}
-      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 w-full text-center">
-        
-        {/* Top Tagline with Decorative Gold Lines: — WELCOME TO KABAB G — */}
-        <div className="inline-flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-          <span className="w-8 sm:w-16 h-[1.5px] bg-[#F5B800]"></span>
-          <span className="font-poppins text-[12px] sm:text-[14px] font-bold tracking-[0.25em] uppercase text-[#F5B800] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            {slides[currentSlide].tagline}
-          </span>
-          <span className="w-8 sm:w-16 h-[1.5px] bg-[#F5B800]"></span>
+            {/* Subtitle / Description */}
+            <p className="font-poppins text-[14px] sm:text-[15px] md:text-[16px] text-neutral-300 max-w-xl leading-relaxed mb-8 sm:mb-9 font-normal">
+              From sizzling BBQ to rich traditional karahi, discover the unforgettable taste of Kabab G, crafted with traditional spice, fresh ingredients and real flavour.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-10 sm:mb-12">
+              {/* Button 1: EXPLORE OUR MENU (Gold filled) */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (setActivePage) {
+                    setActivePage('Menu');
+                    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                  }
+                }}
+                className="btn-custom bg-[#F5B800] hover:bg-[#e0a700] text-black font-poppins font-bold text-[12px] sm:text-[13px] px-6 sm:px-7 py-3.5 rounded-full shadow-lg shadow-[#F5B800]/20 flex items-center gap-2 cursor-pointer transition-all duration-200 hover:scale-105 uppercase tracking-wider"
+              >
+                <Utensils className="w-4 h-4 text-black stroke-[2.2]" />
+                <span>EXPLORE OUR MENU</span>
+              </button>
+
+              {/* Button 2: CALL TO ORDER (Dark outline) */}
+              <a
+                href="tel:03159610004"
+                className="btn-custom bg-transparent hover:bg-white/[0.08] text-white border border-[#F5B800]/60 hover:border-[#F5B800] font-poppins font-semibold text-[12px] sm:text-[13px] px-6 sm:px-7 py-3.5 rounded-full flex items-center gap-2 cursor-pointer transition-all duration-200 uppercase tracking-wider"
+              >
+                <Phone className="w-4 h-4 text-[#F5B800] stroke-[2.2]" />
+                <span>CALL TO ORDER</span>
+              </a>
+            </div>
+
+            {/* Stats Row */}
+            <div className="pt-6 border-t border-neutral-800/80 grid grid-cols-3 gap-3 sm:gap-6 max-w-lg mb-6">
+              {stats.map((stat, idx) => (
+                <div 
+                  key={stat.label} 
+                  className={`pr-2 sm:pr-4 ${idx !== stats.length - 1 ? 'border-r border-neutral-800' : ''}`}
+                >
+                  <div className="font-poppins text-[24px] sm:text-[28px] md:text-[32px] font-extrabold text-[#F5B800] leading-none mb-1.5 tracking-tight">
+                    {stat.value}
+                  </div>
+                  <div className="font-poppins text-[9px] sm:text-[11px] font-semibold text-neutral-400 uppercase tracking-wider leading-tight">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Scroll to Explore Link */}
+            <div>
+              <button
+                type="button"
+                onClick={handleScrollToContent}
+                className="inline-flex items-center gap-1.5 text-neutral-400 hover:text-[#F5B800] font-poppins text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors cursor-pointer group"
+              >
+                <span>SCROLL TO EXPLORE</span>
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#F5B800]" />
+              </button>
+            </div>
+
+          </div>
+
+          {/* ---------------- RIGHT COLUMN: FEATURED FOOD CARD WITH BADGES ---------------- */}
+          <div className="lg:col-span-6 xl:col-span-6 relative mt-4 lg:mt-0">
+            <div className="relative mx-auto max-w-lg lg:max-w-none">
+              
+              {/* Outer Card Frame with Gold Border & Rounded Corners */}
+              <div className="relative rounded-3xl sm:rounded-[32px] overflow-hidden border-2 border-[#F5B800] shadow-[0_20px_60px_rgba(0,0,0,0.85)] bg-[#141414] aspect-[4/3] sm:aspect-[14/10] lg:aspect-[4/3] transition-all duration-300 hover:shadow-[0_20px_60px_rgba(245,184,0,0.2)]">
+                
+                {/* Images with smooth fade transition */}
+                {heroImages.map((img, idx) => (
+                  <div
+                    key={img.src}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                      currentImageIndex === idx ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0 pointer-events-none'
+                    }`}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-full object-cover object-center transform transition-transform duration-[6000ms] hover:scale-105"
+                    />
+                    {/* Subtle warm vignette */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20" />
+                  </div>
+                ))}
+
+              </div>
+
+              {/* Floating Badge 1 (Top-Right): Dark Circle with Gold Crown */}
+              <div className="absolute -top-3.5 -right-3.5 sm:-top-5 sm:-right-5 z-20">
+                <div className="w-13 sm:w-16 h-13 sm:h-16 rounded-full bg-[#161616] border-2 border-[#F5B800] shadow-2xl flex flex-col items-center justify-center text-center p-1 group hover:scale-110 transition-transform">
+                  <Crown className="w-4 sm:w-5 h-4 sm:h-5 text-[#F5B800] stroke-[2.2] mb-0.5" />
+                  <span className="font-poppins text-[8px] sm:text-[9px] font-bold text-[#F5B800] uppercase tracking-wider leading-none">
+                    Kabab G
+                  </span>
+                </div>
+              </div>
+
+              {/* Floating Badge 2 (Bottom-Left): Black Card with Sizzling Live / Fresh off the Grill */}
+              <div className="absolute -bottom-4 -left-3 sm:-bottom-5 sm:-left-5 z-20 max-w-[240px] sm:max-w-[270px]">
+                <div className="bg-[#141414]/95 backdrop-blur-md text-white rounded-2xl p-2.5 sm:p-3 shadow-2xl border border-neutral-800 hover:border-[#F5B800] transition-colors flex items-center gap-3">
+                  <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-black text-[#F5B800] flex items-center justify-center shrink-0 border border-[#F5B800]/40 shadow-sm">
+                    <Flame className="w-4 sm:w-4.5 h-4 sm:h-4.5 fill-[#F5B800] text-[#F5B800]" />
+                  </div>
+                  <div className="font-poppins text-left">
+                    <div className="text-[11px] sm:text-[12px] font-extrabold text-white leading-tight">
+                      {heroImages[currentImageIndex].badgeTitle}
+                    </div>
+                    <div className="text-[9px] sm:text-[10px] text-neutral-400 font-medium leading-tight mt-0.5">
+                      {heroImages[currentImageIndex].badgeSubtitle}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Image Indicators */}
+              <div className="absolute bottom-3 right-4 z-20 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10">
+                {heroImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setCurrentImageIndex(idx)}
+                    aria-label={`Slide ${idx + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      currentImageIndex === idx ? 'w-5 bg-[#F5B800]' : 'w-1.5 bg-white/40 hover:bg-white'
+                    }`}
+                  />
+                ))}
+              </div>
+
+            </div>
+          </div>
+
         </div>
+      </section>
 
-        {/* Main Heading: Large Playfair Display in Pure White & Gold */}
-        <h1 className="font-playfair text-[38px] sm:text-[54px] md:text-[68px] lg:text-[78px] font-bold text-white tracking-tight leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] uppercase transition-all duration-700">
-          {slides[currentSlide].headingLine1} <br />
-          <span className="text-white">
-            {slides[currentSlide].headingLine2}{' '}
-          </span>
-          <span className="text-[#F5B800]">
-            {slides[currentSlide].headingHighlight}
-          </span>
-        </h1>
-
-        {/* Subtitle Line with dot separators: Seekh Kebabs · Desi Karahi · ... */}
-        <p className="font-poppins text-[15px] sm:text-[17px] md:text-[19px] text-neutral-100 max-w-2xl mx-auto tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] mt-5 sm:mt-6 leading-relaxed">
-          {slides[currentSlide].subtitle}
-        </p>
-
-        {/* Centered Action Buttons */}
-        <div className="pt-8 sm:pt-10 flex flex-wrap items-center justify-center gap-4">
-          {/* Primary Button */}
-          <a
-            href="#menu"
-            onClick={(e) => {
-              e.preventDefault();
-              const menuEl = document.getElementById('menu');
-              if (menuEl) menuEl.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="btn-custom text-[15px] font-semibold bg-[#F5B800] hover:bg-[#e0a700] text-[#111111] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-2xl hover:shadow-[#F5B800]/40 transform hover:-translate-y-0.5 active:translate-y-0 transition duration-200 group cursor-pointer uppercase tracking-wider flex items-center justify-center"
-          >
-            {slides[currentSlide].btnText}
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
-
-          {/* Secondary Button */}
-          <button
-            type="button"
-            onClick={() => {
-              if (setActivePage) setActivePage('Contact');
-              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-            }}
-            className="btn-custom text-[15px] font-semibold bg-black/40 backdrop-blur-md hover:bg-black/70 text-[#FFFFFF] border-2 border-white/80 hover:border-[#F5B800] hover:text-[#F5B800] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition duration-200 shadow-xl cursor-pointer uppercase tracking-wider"
-          >
-            Visit Us
-          </button>
-        </div>
-
-        {/* Bottom Slider Navigation Dots */}
-        <div className="pt-10 sm:pt-12 flex items-center justify-center space-x-3">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => setCurrentSlide(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`transition-all duration-300 rounded-full focus:outline-none cursor-pointer ${
-                currentSlide === idx
-                  ? 'w-8 h-2.5 bg-[#F5B800]'
-                  : 'w-2.5 h-2.5 bg-white/50 hover:bg-white'
-              }`}
-            />
+      {/* ================= BOTTOM MARQUEE / TICKER STRIP ================= */}
+      <div className="relative z-10 bg-[#090909] border-t border-b border-neutral-800/90 py-3 sm:py-3.5 overflow-hidden select-none">
+        <div className="animate-marquee flex items-center gap-6 sm:gap-8 text-neutral-300 font-playfair text-[12px] sm:text-[14px] font-medium tracking-wider uppercase">
+          {marqueeItems.concat(marqueeItems).map((text, index) => (
+            <React.Fragment key={index}>
+              <span className="hover:text-[#F5B800] transition-colors whitespace-nowrap">
+                {text}
+              </span>
+              <Sparkles className="w-3 h-3 text-[#F5B800] shrink-0" />
+            </React.Fragment>
           ))}
         </div>
-
       </div>
-    </section>
+
+    </div>
   );
 }
