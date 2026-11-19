@@ -209,11 +209,11 @@ export default function FoodCategoriesSection({ setActivePage }) {
             <div
               key={cat.id}
               onClick={handleCategoryClick}
-              className="group relative bg-[#141414] hover:bg-[#1a1a1a] border border-neutral-800/90 hover:border-[#F5B800] rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(245,184,0,0.18)] flex flex-row items-stretch cursor-pointer"
+              className="group relative bg-[#141414] hover:bg-[#1a1a1a] border border-neutral-800/90 hover:border-[#F5B800] rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(245,184,0,0.18)] flex flex-row items-stretch cursor-pointer min-h-[145px] sm:min-h-[155px]"
             >
               
               {/* Left Side: Just the Image */}
-              <div className="w-[105px] sm:w-[115px] md:w-[125px] shrink-0 relative overflow-hidden bg-neutral-900 select-none">
+              <div className="w-[110px] sm:w-[120px] md:w-[125px] shrink-0 relative overflow-hidden bg-neutral-900 select-none">
                 <img
                   src={cat.image}
                   alt={cat.name}
@@ -229,22 +229,22 @@ export default function FoodCategoriesSection({ setActivePage }) {
               <div className="flex-1 p-3.5 sm:p-4 flex flex-col justify-between text-left min-w-0">
                 <div>
                   <div className="flex items-start justify-between gap-1.5 mb-1">
-                    <h3 className="font-playfair text-[15px] sm:text-[16px] font-bold text-white group-hover:text-[#F5B800] transition-colors leading-snug">
+                    <h3 className="font-playfair text-[16px] font-bold text-white group-hover:text-[#F5B800] transition-colors leading-snug">
                       {cat.name}
                     </h3>
                   </div>
                   
-                  <span className="inline-block text-[10px] font-poppins font-semibold text-[#F5B800] bg-[#F5B800]/10 border border-[#F5B800]/30 px-2 py-0.5 rounded-full mb-1.5">
+                  <span className="inline-block text-[11px] font-poppins font-semibold text-[#F5B800] bg-[#F5B800]/10 border border-[#F5B800]/30 px-2.5 py-0.5 rounded-full mb-1.5">
                     {cat.count}
                   </span>
 
-                  <p className="font-poppins text-[11px] sm:text-[11.5px] text-neutral-400 line-clamp-2 leading-relaxed">
+                  <p className="font-poppins text-[14px] text-neutral-300 line-clamp-2 leading-relaxed">
                     {cat.desc}
                   </p>
                 </div>
 
-                <div className="mt-2.5 pt-2 border-t border-neutral-800/80 flex items-center justify-between text-[11px] font-poppins text-neutral-400 group-hover:text-[#F5B800] transition-colors">
-                  <span className="font-medium text-[11px]">View Menu</span>
+                <div className="mt-2.5 pt-2 border-t border-neutral-800/80 flex items-center justify-between text-[12px] sm:text-[13px] font-poppins text-neutral-400 group-hover:text-[#F5B800] transition-colors">
+                  <span className="font-medium">View Menu</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform text-[#F5B800]" />
                 </div>
 

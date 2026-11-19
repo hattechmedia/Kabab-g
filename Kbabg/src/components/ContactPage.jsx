@@ -399,8 +399,8 @@ export default function ContactPage({ setActivePage }) {
                   key={`gulshan-${gulshanMapView}`}
                   src={
                     gulshanMapView === 'satellite'
-                      ? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52420.588022604796!2d71.4394448533939!3d30.24183320246121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b35000f521487%3A0x2e59b014fb3ff98c!2sKabab%20G!5e1!3m2!1sen!2s!4v1793780796470!5m2!1sen!2s'
-                      : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52420.588022604796!2d71.4394448533939!3d30.24183320246121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b35000f521487%3A0x2e59b014fb3ff98c!2sKabab%20G!5e0!3m2!1sen!2s!4v1793780796470!5m2!1sen!2s'
+                      ? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.223985835628!2d71.5081388!3d30.202153999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b35072be192cb%3A0x50af9d2f62367c73!2sKABAB%20G%20Restaurant%20%26%20BBQ!5e1!3m2!1sen!2s!4v1795076678804!5m2!1sen!2s'
+                      : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.223985835628!2d71.5081388!3d30.202153999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b35072be192cb%3A0x50af9d2f62367c73!2sKABAB%20G%20Restaurant%20%26%20BBQ!5e0!3m2!1sen!2s!4v1795076678804!5m2!1sen!2s'
                   }
                   width="100%"
                   height="100%"
@@ -488,8 +488,8 @@ export default function ContactPage({ setActivePage }) {
                   key={`nagana-${naganaMapView}`}
                   src={
                     naganaMapView === 'satellite'
-                      ? 'https://maps.google.com/maps?q=Kabab+G+Nagana+Chowk+Multan&t=k&z=15&ie=UTF8&iwloc=&output=embed'
-                      : 'https://maps.google.com/maps?q=Kabab+G+Nagana+Chowk+Multan&t=m&z=15&ie=UTF8&iwloc=&output=embed'
+                      ? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13266.71731153256!2d71.4966080871582!3d30.241833199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b35000f521487%3A0x2e59b014fb3ff98c!2sKabab%20G!5e1!3m2!1sen!2sus!4v1795076490659!5m2!1sen!2sus'
+                      : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13266.71731153256!2d71.4966080871582!3d30.241833199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b35000f521487%3A0x2e59b014fb3ff98c!2sKabab%20G!5e0!3m2!1sen!2sus!4v1795076490659!5m2!1sen!2sus'
                   }
                   width="100%"
                   height="100%"
